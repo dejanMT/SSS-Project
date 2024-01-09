@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="model">Model</label>
-    <input type="text" class="form-control @error('model') is-invalid @enderror" id="model" name="model" value="{{ old('model') }}">
+    <input type="text" class="form-control @error('model') is-invalid @enderror" id="model" name="model" value="{{ old('model', $car->model) }}">
     @error('model')
         <div class="invalid-feedback">
             {{ $message }}
@@ -10,7 +10,7 @@
 
 <div class="form-group">
     <label for="year">Year</label>
-    <input type="text" class="form-control @error('year') is-invalid @enderror" id="year" name="year" value="{{ old('year') }}">
+    <input type="text" class="form-control @error('year') is-invalid @enderror" id="year" name="year" value="{{ old('year', $car->year) }}">
     @error('year')
         <div class="invalid-feedback">
             {{ $message }}
@@ -20,7 +20,7 @@
 
 <div class="form-group">
     <label for="salesperson_email">Salesperson Email</label>
-    <input type="email" class="form-control @error('salesperson_email') is-invalid @enderror" id="salesperson_email" name="salesperson_email" value="{{ old('salesperson_email') }}">
+    <input type="email" class="form-control @error('salesperson_email') is-invalid @enderror" id="salesperson_email" name="salesperson_email" value="{{ old('salesperson_email', $car->salesperson_email) }}">
     @error('salesperson_email')
         <div class="invalid-feedback">
             {{ $message }}
@@ -33,7 +33,7 @@
     <select class="form-control @error('manufacturer_id') is-invalid @enderror" id="manufacturer" name="manufacturer_id">
         <option value="">Select Manufacturer</option>
         @foreach ($manufactors as $id => $name)
-            <option value="{{ $id }}" {{ old('manufacturer_id') == $id ? 'selected' : '' }}>{{ $name }}</option>
+            <option {{ $id == old('manufacturer_id', $car->manufacturer_id) ? 'selected' : '' }} value="{{ $id }}">{{ $name }}</option>
         @endforeach
     </select>
     @error('manufacturer_id')

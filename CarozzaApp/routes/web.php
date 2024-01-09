@@ -23,6 +23,9 @@ Route::get('/', function () {
 //display all cars
 Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
 
+//display all manufacturers
+Route::get('/manufacturers', [ManufacturerController::class, 'index'])->name('manufacturers.index');
+
 //add new car form
 Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create');
 
@@ -35,10 +38,7 @@ Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create'
 //store new car
 Route::post('/cars', [CarController::class, 'store'])->name('cars.store');
 
-Route::get('/cars/edit/{id}', function () {
-    return view('./cars.edit');
-});
+//edit car
+Route::get('/cars/{id}/edit', [CarController::class, 'edit'])->name('cars.edit');
 
-Route::get('/cars/show/{id}', function () {
-    return view('./cars.show');
-});
+Route::put('/cars/{id}', [CarController::class, 'update'])->name('cars.update');
